@@ -1,0 +1,16 @@
+extends ../layouts/base.pug
+
+block variables
+  - var title = "Base template"
+
+block content
+  .container
+    label.upload-label Загрузить изображение
+      input.upload-btn(type="file")
+    .picture-section
+      img.picture(alt="")
+      .crop-area
+
+    .action-section
+      a(class="action-btn is-hidden") Crop
+      a.link.is-hidden(href="")

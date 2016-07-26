@@ -1,0 +1,23 @@
+.container {
+  max-width: 600px;
+  padding: 20px 10px;
+  margin: auto;
+  text-align: center;
+}
+
+.upload-btn {
+  display: none;
+}
+
+.upload-label {
+  border: 0;
+  padding: 10px;
+  background: linear-gradient(to bottom, #1e5799 0%,#207cca 51%,#2989d8 73%,#7db9e8 100%);
+  color: #fff;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    background: linear-gradient(to bottom, #7db9e8 0%,#2989d8 36%,#2989d8 36%,#207cca 49%,#1e5799 100%);
+  }
+}
