@@ -4,10 +4,10 @@
  * @class
  */
 class Photo {
-  constructor(element) {
-    this.element = element;
+  constructor(container) {
+    this.element = container;
+    this.img = this.element.querySelector('.picture');
   }
-
 
   /**
    * Set image
@@ -16,11 +16,25 @@ class Photo {
   setImage(file) {
     let fileReader = new FileReader();
 
+    this.element.classList.remove('is-hidden');
+
     fileReader.addEventListener('load', () => {
-      this.element.src = fileReader.result;
+      this.img.src = fileReader.result;
     });
 
     fileReader.readAsDataURL(file);
+  }
+
+  _renderCropView() {
+    // TODO
+  }
+
+  crop() {
+    // TODO
+  }
+
+  save() {
+    // TODO
   }
 }
 
