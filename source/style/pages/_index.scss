@@ -34,16 +34,6 @@
   min-height: 300px;
   max-height: 600px;
   border: 2px solid darkgreen;
-
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0, 0.6);
-  }
 }
 
 .picture {
@@ -63,4 +53,13 @@
   &:active {
     background: linear-gradient(to bottom, #9ecb2d 0%,#72aa00 25%,#8eb92a 50%,#bfd255 100%);
   }
+}
+
+
+.crop-area {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px dashed #0000AA;
 }

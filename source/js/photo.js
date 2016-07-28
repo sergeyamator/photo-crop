@@ -20,13 +20,16 @@ class Photo {
 
     fileReader.addEventListener('load', () => {
       this.img.src = fileReader.result;
+      this._createCropArea(this.img.offsetWidth / 2);
     });
+
 
     fileReader.readAsDataURL(file);
   }
 
   _renderCropView() {
-    // TODO
+
+
   }
 
   crop() {
@@ -35,6 +38,16 @@ class Photo {
 
   save() {
     // TODO
+  }
+
+  _createCropArea(width) {
+    this.cropArea = document.createElement('div');
+    this.cropArea.classList.add('crop-area');
+
+    this.cropArea.style.width = width + 'px';
+    this.cropArea.style.height = width + 'px';
+
+    document.querySelector('.picture-section').appendChild(this.cropArea);
   }
 }
 
