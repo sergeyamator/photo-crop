@@ -17,19 +17,19 @@
   display: inline-block;
   border: 0;
   padding: 10px;
-  background: linear-gradient(to bottom, #1e5799 0%,#207cca 51%,#2989d8 73%,#7db9e8 100%);
+  background: linear-gradient(to bottom, #1e5799 0%, #207cca 51%, #2989d8 73%, #7db9e8 100%);
   color: #fff;
   cursor: pointer;
 
   &:hover,
   &:active {
-    background: linear-gradient(to bottom, #7db9e8 0%,#2989d8 36%,#2989d8 36%,#207cca 49%,#1e5799 100%);
+    background: linear-gradient(to bottom, #7db9e8 0%, #2989d8 36%, #2989d8 36%, #207cca 49%, #1e5799 100%);
   }
 }
 
 .picture-section {
-  position: relative;
   display: flex;
+  position: relative;
   width: 100%;
   min-height: 300px;
   max-height: 600px;
@@ -46,20 +46,24 @@
   padding: 10px;
   display: inline-block;
   text-decoration: none;
-  background: linear-gradient(to bottom, #bfd255 0%,#8eb92a 50%,#72aa00 71%,#9ecb2d 100%);
+  background: linear-gradient(to bottom, #bfd255 0%, #8eb92a 50%, #72aa00 71%, #9ecb2d 100%);
   color: #fff;
 
   &:hover,
   &:active {
-    background: linear-gradient(to bottom, #9ecb2d 0%,#72aa00 25%,#8eb92a 50%,#bfd255 100%);
+    background: linear-gradient(to bottom, #9ecb2d 0%, #72aa00 25%, #8eb92a 50%, #bfd255 100%);
   }
 }
 
+.picture-crop-area {
+  position: relative;
+  margin: auto;
+  user-select: none;
+}
 
 .crop-area {
+  @include center();
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   border: 3px dashed #0000AA;
+  cursor: move;
 }
