@@ -48,18 +48,30 @@ class Photo {
    * @private
    */
   _createCropArea(width) {
+    let parent = document.querySelector('.picture-crop-area');
+    let height = width;
+
+    if (parent.offsetHeight < width) {
+      height = parent.offsetHeight;
+    }
+
+    if (parent.offsetWidth < width) {
+      width = parent.offsetWidth;
+    }
+
     if (document.querySelector('.crop-area')) {
       this.cropArea = document.querySelector('.crop-area');
+      this.cropArea.style.height = height + 'px';
       this.cropArea.style.width = width + 'px';
-      this.cropArea.style.height = width + 'px';
     } else {
       this.cropArea = document.createElement('div');
       this.cropArea.classList.add('crop-area');
       this.cropArea.style.width = width + 'px';
-      this.cropArea.style.height = width + 'px';
-
+      this.cropArea.style.height = height + 'px';
       document.querySelector('.picture-crop-area').appendChild(this.cropArea);
     }
+
+    _center(this.cropArea);
   }
 }
 
@@ -110,8 +122,14 @@ function _onMouseMove(e) {
   }
 }
 
+function _center(el) {
+  el.style.left = '50%';
+  el.style.top = '50%';
+  el.style.transform = 'translate(-50%, -50%)';
+}
+
 function isSupportedFileApi() {
-  return  !!(window.File && window.FileReader);
+  return !!(window.File && window.FileReader);
 }
 
 module.exports = Photo;
