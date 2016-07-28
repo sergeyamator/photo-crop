@@ -12,6 +12,4 @@ actionBtn.addEventListener('change', (e) => {
 });
 
 
-function isSupportedFileApi() {
- return  !!(window.File && window.FileReader);
-}
+

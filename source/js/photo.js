@@ -14,6 +14,10 @@ class Photo {
    * @param file
    */
   setImage(file) {
+    if (!isSupportedFileApi()) {
+      throw new Error('Ваш браузер не поддерживает современные технологии');
+    }
+
     let fileReader = new FileReader();
     this.element.classList.remove('is-hidden');
 
@@ -104,6 +108,10 @@ function _onMouseMove(e) {
     this.activeEl.style.left = leftCoord + 'px';
     this.activeEl.style.top = topCoord + 'px';
   }
+}
+
+function isSupportedFileApi() {
+  return  !!(window.File && window.FileReader);
 }
 
 module.exports = Photo;
