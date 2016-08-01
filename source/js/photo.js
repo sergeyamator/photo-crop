@@ -4,7 +4,9 @@ const URL = '';
 let utils = require('./utils');
 let Crop = require('./crop');
 /**
- * @class
+ * Creates class Photo which renders
+ * picture on the page
+ * @class Photo
  */
 class Photo {
   constructor(container) {
@@ -28,7 +30,7 @@ class Photo {
       this.img.src = fileReader.result;
       let cropArea = new Crop(document.querySelector('.picture-crop-area'), this.img.offsetWidth / 2);
       cropArea.render();
-      this._allowDraggable(document.querySelector('.crop-area'));
+      this._attachDragEvent(document.querySelector('.crop-area'));
 
       document.querySelector('.action-btn').addEventListener('click', (e) => {
         e.preventDefault();
@@ -39,7 +41,12 @@ class Photo {
     fileReader.readAsDataURL(file);
   }
 
-  _allowDraggable(el) {
+  /**
+   * Attach drag event on the element
+   * @param {HTMLElement} el
+   * @private
+   */
+  _attachDragEvent(el) {
     el.addEventListener('mousedown', _onMouseDown);
   }
 
@@ -48,6 +55,12 @@ class Photo {
   }
 }
 
+/**
+ * When users click we get coords event target
+ * and attach mousemove and mouseup events
+ * @param {Event} e
+ * @private
+ */
 function _onMouseDown(e) {
   this.activeEl = e.target;
   this._offsetX = e.offsetX;
@@ -61,6 +74,12 @@ function _onMouseUp() {
   this.activeEl = null;
 }
 
+/**
+ * When user click and move mouse crop area will
+ * drag while user doesn't let go mouse
+ * @param e
+ * @private
+ */
 function _onMouseMove(e) {
   if (this.activeEl) {
     this.activeEl.style.transform = 'translate(0, 0)';

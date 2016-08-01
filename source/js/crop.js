@@ -9,11 +9,13 @@ let sendAjax = require('./sendAjax');
  */
 class Crop {
   constructor(container, width) {
-    this.parent = container;
     this.height = width;
     this.width = width;
   }
 
+  /**
+   * Rendering crop area on the page
+   */
   render() {
     if (parent.offsetHeight < this.width) {
       this.height = parent.offsetHeight;
@@ -38,6 +40,11 @@ class Crop {
 
     utils.center(this.cropArea);
   }
+
+  /**
+   * Crop function, which get pictures and crop coordinates
+   * and send it to the sever
+   */
   crop() {
     let imgCoords = this.pictureCropArea.getBoundingClientRect(),
       cropAreaCoords = this.cropArea.getBoundingClientRect();
@@ -52,6 +59,11 @@ class Crop {
     this._sendAjax(cropCoords);
   }
 
+  /**
+   * Send request to the url, which is provided when function calls
+   * @param {String} url
+   * @private
+   */
   _sendAjax(url) {
     let promise = sendAjax(url);
     promise.then(

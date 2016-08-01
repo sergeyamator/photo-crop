@@ -1,6 +1,12 @@
 
 'use strict';
 
+/**
+ *
+ * Create ajax and send it
+ * @param {String} url
+ * @returns {Promise}
+ */
 function sendAjax(url) {
   let promise = new Promise((resolve, reject) => {
     let xhr = new XMLHttpRequest();
