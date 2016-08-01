@@ -32,9 +32,5 @@
     "rimraf": "2.5.2",
     "webpack": "1.13.1",
     "webpack-validator": "2.2.1"
-  },
-  "dependencies": {
-    "angular": "1.5.7",
-    "jquery": "2.2.2"
   }
 }
