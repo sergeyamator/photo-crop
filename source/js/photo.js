@@ -1,5 +1,8 @@
 'use strict';
 
+const URL = '';
+let utils = require('./utils');
+let Crop = require('./crop');
 /**
  * @class
  */
@@ -14,7 +17,7 @@ class Photo {
    * @param file
    */
   setImage(file) {
-    if (!isSupportedFileApi()) {
+    if (!utils.isSupportedFileApi()) {
       throw new Error('Ваш браузер не поддерживает современные технологии');
     }
 
@@ -23,8 +26,14 @@ class Photo {
 
     fileReader.addEventListener('load', () => {
       this.img.src = fileReader.result;
-      this._createCropArea(this.img.offsetWidth / 2);
-      this._allowDraggable(this.cropArea);
+      let cropArea = new Crop(document.querySelector('.picture-crop-area'), this.img.offsetWidth / 2);
+      cropArea.render();
+      this._allowDraggable(document.querySelector('.crop-area'));
+
+      document.querySelector('.action-btn').addEventListener('click', (e) => {
+        e.preventDefault();
+        cropArea.crop(URL);
+      })
     });
 
     fileReader.readAsDataURL(file);
@@ -34,47 +43,10 @@ class Photo {
     el.addEventListener('mousedown', _onMouseDown);
   }
 
-  crop() {
-    // TODO
-  }
-
   save() {
     // TODO
   }
-
-  /**
-   * Create crop area and add it to the page
-   * @param {Number} width Width and height crop area
-   * @private
-   */
-  _createCropArea(width) {
-    let parent = document.querySelector('.picture-crop-area');
-    let height = width;
-
-    if (parent.offsetHeight < width) {
-      height = parent.offsetHeight;
-    }
-
-    if (parent.offsetWidth < width) {
-      width = parent.offsetWidth;
-    }
-
-    if (document.querySelector('.crop-area')) {
-      this.cropArea = document.querySelector('.crop-area');
-      this.cropArea.style.height = height + 'px';
-      this.cropArea.style.width = width + 'px';
-    } else {
-      this.cropArea = document.createElement('div');
-      this.cropArea.classList.add('crop-area');
-      this.cropArea.style.width = width + 'px';
-      this.cropArea.style.height = height + 'px';
-      document.querySelector('.picture-crop-area').appendChild(this.cropArea);
-    }
-
-    _center(this.cropArea);
-  }
 }
-
 
 function _onMouseDown(e) {
   this.activeEl = e.target;
@@ -120,16 +92,6 @@ function _onMouseMove(e) {
     this.activeEl.style.left = leftCoord + 'px';
     this.activeEl.style.top = topCoord + 'px';
   }
-}
-
-function _center(el) {
-  el.style.left = '50%';
-  el.style.top = '50%';
-  el.style.transform = 'translate(-50%, -50%)';
-}
-
-function isSupportedFileApi() {
-  return !!(window.File && window.FileReader);
 }
 
 module.exports = Photo;
